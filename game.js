@@ -15,7 +15,6 @@ Game.prototype.initialize = function(row, cellsPerRow) {
     this.view.renderBoard(row, cellsPerRow);
     this.view.renderSnake(this.snake);
     // this.view.placeRandomApple();
-    // var self = this;
     this.startGameLoop();
 
     this.generateUniqueRandomApples(this.score+1);
