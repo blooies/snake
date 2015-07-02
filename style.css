@@ -1,0 +1,22 @@
+#game-container {
+    width: 400px;
+}
+
+.cell {
+    width: 20px;
+    height: 20px;
+    float: left;
+    background-color: #6B7E77;
+}
+
+.snake-color {
+	background-color: #C7EF00;
+}
+
+.apple {
+	background-color: #FF5666;
+}
+
+#game-over {
+	display: none;
+}
