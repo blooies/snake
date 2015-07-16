@@ -8,6 +8,7 @@ Game = function(snake, view) {
     this.updateSnake();
     this.numCurrentApples = 0;
     this.currentEatenApplesInThisRound = 0;
+    this.paused = false;
 }
 
 
@@ -17,7 +18,7 @@ Game.prototype.initialize = function(row, cellsPerRow) {
     // this.view.placeRandomApple();
     this.startGameLoop();
 
-    this.generateUniqueRandomApples(this.score+1);
+    this.generateUniqueRandomApples(this.score + 1);
 }
 
 
@@ -38,38 +39,42 @@ Game.prototype.updateSnake = function() {
     }
 
     $('body').on('keydown', function(event) {
-        // switch (event.keyCode) {
-            if (opposites[self.snake.dir] !== directionMap[event.keyCode]) {
-                console.log(self.snake.dir)
-                console.log('changing direction..', directionMap[event.keyCode])
-                console.log(self.snake.dir)
-                self.snake.dir = directionMap[event.keycode];
+        if (opposites[self.snake.dir] !== directionMap[event.keyCode]) {
+            switch (event.keyCode) {
+                case 39: //right arrow
+                    self.snake.dir = 'east';
+                    break;
+                case 37: //left arrow
+                    self.snake.dir = 'west';
+                    break;
+                case 40: // down arrow
+                    self.snake.dir = 'south';
+                    break;
+                case 38: //up arrow
+                    self.snake.dir = 'north';
+                    break;
+                case 32:
+                    console.log('what is paused?', self.paused)
+                    if (self.paused) {
+                        self.startGameLoop();
+                    } else {
+                        self.pauseGameLoop();
+                    }
+                    // start = true;
+                    break;
+                case 82:
+                    console.log('id', globalId)
+                    self.startGameLoop();
+                    break;
             }
-            // case 39: //right arrow
-            //     self.snake.dir = 'east';
-            //     break;
-            // case 37: //left arrow
-            //     self.snake.dir = 'west';
-            //     break;
-            // case 40: // down arrow
-            //     self.snake.dir = 'south';
-            //     break;
-            // case 38: //up arrow
-            //     self.snake.dir = 'north';
-            //     break;
-            // case 32:
-            //     clearInterval(globalId);
-            //     break;
-            // case 82: 
-            //     self.startGameLoop();
-            //     break;
-                
-        // }
-
+        }
     })
 }
 
-
+Game.prototype.pauseGameLoop = function() {
+    this.paused = true;
+    clearInterval(globalId);
+}
 
 Game.prototype.generateUniqueRandomApples = function(apples) {
     this.numCurrentApples = apples;
@@ -133,6 +138,8 @@ Game.prototype.checkIfApplesCollideWithSnake = function() {
 }
 
 Game.prototype.startGameLoop = function() {
+    console.log("starting..")
+    this.paused = false;
     var self = this;
     globalId = window.setInterval(function() {
         self.snake.move(self.snake.dir);
@@ -142,8 +149,6 @@ Game.prototype.startGameLoop = function() {
             $('#level').text(self.score);
             console.log("moving up a score and reg");
             self.snake.leveledUp = true;
-            // self.snake.body.push()
-            // self.resetApples();
             console.log('leveled up', self.snake.body)
             self.generateUniqueRandomApples(self.score+1);
         }
@@ -153,7 +158,6 @@ Game.prototype.startGameLoop = function() {
 
 
 Game.prototype.checkEatenApple = function() {
-    // var head = this.snake.body[0].join(''),
     var head = this.snake.head,
         currentApple = this.snake.body[0];
     if (this.currentApplesTable[this.snake.head]) {
