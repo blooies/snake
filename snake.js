@@ -9,6 +9,7 @@ Snake = function(body, dir) {
 Snake.prototype.move = function(dir) {
 	this.dir = dir;
 	var head = this.body[0];
+
 	switch (dir) {
 		case 'north': //row -1, column same
 			this.body.unshift([head[0]-1, head[1]]);
@@ -32,6 +33,5 @@ Snake.prototype.move = function(dir) {
 	} else {
 		this.leveledUp = false;
 	}
-
 }
 

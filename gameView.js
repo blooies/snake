@@ -9,14 +9,14 @@ GameView.prototype.renderBoard = function(rows, cellsPerRow) {
 
     for (var i = 0; i < rows; i++) {
         for (var j = 0; j < cellsPerRow; j++) {
-            $('#game-container').append(makeDivId(i, j))
+            $('#game-container').append(makeDivId(i, j));
         }
     }
 }
 
 GameView.prototype.renderSnake = function(snake) {
     snake.body.forEach(function(coord) {
-        $('.row'+coord[0]+'.column'+coord[1]).toggleClass('snake-color');
+        $('.row' + coord[0] + '.column' + coord[1]).toggleClass('snake-color');
     })
 
 }
@@ -24,13 +24,13 @@ GameView.prototype.renderSnake = function(snake) {
 GameView.prototype.colorSnake = function(snake) {
 	$('div').filter('.snake-color').toggleClass('snake-color');
 	snake.body.forEach(function(coord) {
-        $('.row'+coord[0]+'.column'+coord[1]).toggleClass('snake-color');
+        $('.row' + coord[0] + '.column' + coord[1]).toggleClass('snake-color');
     })
 }
 
 GameView.prototype.colorInApple = function(apples) {
 	apples.forEach(function(apple) {
-		$('.row'+apple[0]+'.column'+apple[1]).addClass('apple');
+		$('.row' + apple[0] + '.column' + apple[1]).addClass('apple');
 	})
 }
 
@@ -39,7 +39,7 @@ GameView.prototype.clearApples = function() {
 }
 
 GameView.prototype.removeApple = function(apple) {
-	$('.row'+apple[0]+'.column'+apple[1]).removeClass('apple');
+	$('.row' + apple[0] + '.column' + apple[1]).removeClass('apple');
 }
 
 function makeDivId(i, j) {
@@ -50,5 +50,6 @@ function makeDivId(i, j) {
         div += j;
         div += " ";
         div += "cell'></div>";
+    
     return div;
 }

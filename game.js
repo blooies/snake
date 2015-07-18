@@ -15,9 +15,7 @@ Game = function(snake, view) {
 Game.prototype.initialize = function(row, cellsPerRow) {
     this.view.renderBoard(row, cellsPerRow);
     this.view.renderSnake(this.snake);
-    // this.view.placeRandomApple();
     this.startGameLoop();
-
     this.generateUniqueRandomApples(this.score + 1);
 }
 
@@ -54,16 +52,13 @@ Game.prototype.updateSnake = function() {
                     self.snake.dir = 'north';
                     break;
                 case 32:
-                    console.log('what is paused?', self.paused)
                     if (self.paused) {
                         self.startGameLoop();
                     } else {
                         self.pauseGameLoop();
                     }
-                    // start = true;
                     break;
                 case 82:
-                    console.log('id', globalId)
                     self.startGameLoop();
                     break;
             }
@@ -102,22 +97,19 @@ Game.prototype.generateRandomApple = function() {
 }
 
 Game.prototype.checkIfApplesCollideWithSnake = function() {
-    var collison;
-    var self = this;
+    var collison,
+        self = this;
     this.snake.body.forEach(function(coord) {
         for (var i = 0; i < self.currentApples.length; i++) {
             var currentApple = self.currentApples[i];
             if (coord[0] === currentApple[0] && coord[1] === currentApple[1]) {
                 collision = true;
                 self.currentApples.splice(i, 1)
-                console.log("TRUE APPLE COLLIDE WITH SNAKE")
-                console.log(this.currentApples)
             }
         }
     })
 
     if (collison || this.currentApples.length != this.numCurrentApples) {
-        console.log('regenerating')
         var newApple = this.generateRandomApple();
         this.currentApples.push(newApple);
         this.checkIfApplesCollideWithSnake();
@@ -126,9 +118,7 @@ Game.prototype.checkIfApplesCollideWithSnake = function() {
     }
 
     if (!collison) {
-        console.log('no collision')
         for (var i = 0; i < this.currentApples.length; i++) {
-            console.log('adding to table', this.currentApples[i]);
             $('#current').text(this.currentApples[i]);
             this.currentApplesTable[this.currentApples[i].join('')] = true;
         }
@@ -138,7 +128,6 @@ Game.prototype.checkIfApplesCollideWithSnake = function() {
 }
 
 Game.prototype.startGameLoop = function() {
-    console.log("starting..")
     this.paused = false;
     var self = this;
     globalId = window.setInterval(function() {
@@ -147,9 +136,7 @@ Game.prototype.startGameLoop = function() {
         if (self.checkEatenApple()) {
             self.score += 1;
             $('#level').text(self.score);
-            console.log("moving up a score and reg");
             self.snake.leveledUp = true;
-            console.log('leveled up', self.snake.body)
             self.generateUniqueRandomApples(self.score+1);
         }
         self.checkCollisions();
@@ -287,13 +274,7 @@ function removeItemInArray(array, item) {
 
     return array;
 }
-// TODO- apples increase after every level (DONE)
-// -cannot move behind snake
-// -check collision of snake with snake itself (DONE)
-// -increase snake after every 3 levels (DONE)
-// statsboard
-// play & pause (DONE)
 
 
 // classic game of snake. after every level, apple on board increases by one. after every three levels,
-// the snakes length will increase. ability to play and pause.
+// the snakes length will increase. spacebar to play and pause.
