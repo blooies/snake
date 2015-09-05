@@ -58,9 +58,6 @@ Game.prototype.updateSnake = function() {
                         self.pauseGameLoop();
                     }
                     break;
-                case 82:
-                    self.startGameLoop();
-                    break;
             }
         }
     })
@@ -131,11 +128,15 @@ Game.prototype.startGameLoop = function() {
     this.paused = false;
     var self = this;
     globalId = window.setInterval(function() {
+        $('#length').text(self.snake.body.length)
+        $('#current').text(self.currentApples.length)
         self.snake.move(self.snake.dir);
         self.view.colorSnake(self.snake);
         if (self.checkEatenApple()) {
             self.score += 1;
             $('#level').text(self.score);
+            $('#current').text(self.currentApples.length);
+            $('#length').text(self.snake.body.length)
             self.snake.leveledUp = true;
             self.generateUniqueRandomApples(self.score+1);
         }
@@ -274,7 +275,3 @@ function removeItemInArray(array, item) {
 
     return array;
 }
-
-
-// classic game of snake. after every level, apple on board increases by one. after every three levels,
-// the snakes length will increase. spacebar to play and pause.

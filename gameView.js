@@ -18,7 +18,6 @@ GameView.prototype.renderSnake = function(snake) {
     snake.body.forEach(function(coord) {
         $('.row' + coord[0] + '.column' + coord[1]).toggleClass('snake-color');
     })
-
 }
 
 GameView.prototype.colorSnake = function(snake) {
