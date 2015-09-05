@@ -93,9 +93,11 @@ Game.prototype.generateRandomApple = function() {
     return [Math.floor(Math.random() * this.view.rows), Math.floor(Math.random() * this.view.cellsPerRow)];
 }
 
+
 Game.prototype.checkIfApplesCollideWithSnake = function() {
     var collison,
         self = this;
+
     this.snake.body.forEach(function(coord) {
         for (var i = 0; i < self.currentApples.length; i++) {
             var currentApple = self.currentApples[i];
@@ -148,6 +150,7 @@ Game.prototype.startGameLoop = function() {
 Game.prototype.checkEatenApple = function() {
     var head = this.snake.head,
         currentApple = this.snake.body[0];
+
     if (this.currentApplesTable[this.snake.head]) {
         this.view.removeApple(currentApple);
         this.currentApplesTable[currentApple.join('')] = false;
@@ -243,6 +246,7 @@ Game.prototype.checkCollisions = function() {
 Game.prototype.checkSelfCollision = function() {
     var head = this.snake.body[0],
         body = this.snake.body;
+
     for (var i =1; i<body.length; i++) {
         var bodyCoords = body[i];
         if (bodyCoords[0] == head[0] && bodyCoords[1] == head[1]) {
@@ -258,6 +262,7 @@ Game.prototype.resetApples = function() {
     this.eaten = 0;
     this.view.clearApples();
 }
+
 
 function removeDuplicates(array) {
     var seen = {};
