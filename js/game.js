@@ -8,7 +8,7 @@ Game = function(snake, view) {
     this.updateSnake();
     this.numCurrentApples = 0;
     this.currentEatenApplesInThisRound = 0;
-    this.paused = false;
+    this.paused = true;
 }
 
 Game.prototype.initialize = function(row, cellsPerRow) {
@@ -59,6 +59,7 @@ Game.prototype.updateSnake = function() {
                     break;
                 case 32:
                     if (self.paused) {
+                        $('#start-game').hide();
                         self.startGameLoop();
                     } else {
                         self.pauseGameLoop();
