@@ -4,14 +4,18 @@
     position: relative;
 }
 
-#game-over {
-	position: absolute;
-	margin-top: 35%;
-	width: 400px;
-	text-align: center;
-	font-size: 30px;
-	background-color: #C7EF00;
-	padding: 30px 0px;
+#game-over, #start-game {
+    position: absolute;
+    margin-top: 35%;
+    width: 400px;
+    text-align: center;
+    font-size: 30px;
+    background-color: #C7EF00;
+    padding: 30px 0px;
+}
+
+#start-game:hover {
+    cursor: pointer;
 }
 
 .cell {
@@ -22,43 +26,43 @@
 }
 
 .snake-color {
-	background-color: #C7EF00;
+    background-color: #C7EF00;
 }
 
 .apple {
-	background-color: #FF5666;
+    background-color: #FF5666;
 }
 
 #game-over {
-	display: none;
+    display: none;
 }
 
 h2 {
-	font-family: 'Righteous';
-	text-transform: uppercase;
-	font-size: 48px;
-	padding: 0px;
-	margin: 0px;
-	text-align: center;
+    font-family: 'Righteous';
+    text-transform: uppercase;
+    font-size: 48px;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
 }
 
 p {
-	margin: 0;
-	padding: 0;
-	text-align: center;
-	font-family: 'PT Sans';
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'PT Sans';
 }
 
 .footer {
-	width: 400px;
-	margin: 0 auto;
-	padding: 20px 0px;
-	clear: both;
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px 0px;
+    clear: both;
 }
 
 .title {
-	width: 400px;
-	margin: 0 auto;
-	padding-top: 10px;
-	padding-bottom: 20px;
+    width: 400px;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 20px;
 }

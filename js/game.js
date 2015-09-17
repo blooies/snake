@@ -15,8 +15,16 @@ Game.prototype.initialize = function(row, cellsPerRow) {
     $('#level').text(this.level);
     this.view.renderBoard(row, cellsPerRow);
     this.view.renderSnake(this.snake);
-    this.startGameLoop();
     this.generateUniqueRandomApples(this.level);
+    this.listenForPlayerStartGame();
+}
+
+Game.prototype.listenForPlayerStartGame = function() {
+    var self = this;
+    $('#start-game').on('click', function() {
+        $(this).hide();
+        self.startGameLoop();
+    })
 }
 
 Game.prototype.updateSnake = function() {
