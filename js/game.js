@@ -39,7 +39,11 @@ Game.prototype.updateSnake = function() {
             39: 'east',
             37: 'west',
             40: 'south',
-            38: 'north'
+            38: 'north',
+            'right': 'east',
+            'left': 'west',
+            'top': 'south',
+            'bottom': 'north'
         };
 
     $('body').on('keydown', function(event) {
@@ -58,6 +62,35 @@ Game.prototype.updateSnake = function() {
                     self.snake.dir = 'north';
                     break;
                 case 32:
+                    if (self.paused) {
+                        $('#start-game').hide();
+                        self.startGameLoop();
+                    } else {
+                        self.pauseGameLoop();
+                    }
+                    break;
+            }
+        }
+    })
+
+    $('.controller').on('click', function(event) {
+        console.log(event.target.localName)
+        console.log(directionMap[event.target.localName])
+        if (opposites[self.snake.dir] !== directionMap[event.target.localName]) {
+            switch (event.target.localName) {
+                case 'right': //right arrow
+                    self.snake.dir = 'east';
+                    break;
+                case 'left': //left arrow
+                    self.snake.dir = 'west';
+                    break;
+                case 'bottom': // down arrow
+                    self.snake.dir = 'south';
+                    break;
+                case 'top': //up arrow
+                    self.snake.dir = 'north';
+                    break;
+                case 'space':
                     if (self.paused) {
                         $('#start-game').hide();
                         self.startGameLoop();

@@ -66,3 +66,70 @@ p {
     padding-top: 10px;
     padding-bottom: 20px;
 }
+
+.controller {
+    display: none;
+    width: 400px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.keys {
+    width: 100px;
+    display: inline-block;
+    margin-right: 35px;
+    position: relative;
+}
+
+top {
+    position: absolute;
+    bottom: 37px;
+    left: 40px;
+    width: 25px;
+    height: 25px;
+    background-color: #000;
+}
+
+bottom {
+    position: absolute;
+    bottom: -12px;
+    left: 40px;
+    width: 25px;
+    height: 25px;
+    background-color: #000;
+}
+
+right {
+    position: absolute;
+    bottom: 12px;
+    right: 10px;
+    width: 25px;
+    height: 25px;
+    background-color: #000;
+}
+
+left {
+    position: absolute;
+    bottom: 12px;
+    left: 15px;
+    width: 25px;
+    height: 25px;
+    background-color: #000;
+}
+
+space {
+    width: 250px;
+    height: 35px;
+    background-color: #000;
+    display: inline-block;
+    margin-bottom: 8px;
+}
+
+@media only screen and (max-device-width : 667px) {
+    body {
+        zoom: 2;
+    }
+    .controller {
+        display: block;
+    }
+}
